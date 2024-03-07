@@ -1,0 +1,46 @@
+
+config interface 'loopback'
+	option device 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config globals 'globals'
+	option ula_prefix 'fda0:61cf:615f::/48'
+
+config device
+	option name 'br-lan'
+	option type 'bridge'
+	list ports 'eth0'
+
+config device
+	option name 'eth0'
+	option macaddr '8a:58:aa:88:a1:2a'
+
+config interface 'lan'
+	option device 'br-lan'
+	option proto 'static'
+	option ipaddr '192.168.1.1'
+	option netmask '255.255.255.0'
+	option ip6assign '60'
+
+config device
+	option name 'eth1'
+	option macaddr '8a:58:aa:88:a1:29'
+
+config interface 'wan'
+	option device 'eth1'
+	option proto 'pppoe'
+	option username '591800042300025'
+	option password '406556'
+	option ipv6 'auto'
+
+config interface 'wan6'
+	option device 'eth1'
+	option proto 'dhcpv6'
+
+config interface 'utun'
+	option proto 'none'
+	option ifname 'utun'
+	option device 'utun'
+
